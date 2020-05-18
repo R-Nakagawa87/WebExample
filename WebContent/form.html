@@ -6,9 +6,25 @@
 </head>
 <body>
 
-<form action = "form" method = "post">
+<form action = "form" method = "get">
 名前：<input type = "text" name = "name"><br>
-性別：<input type = "text" name = "gender"><br>
+性別：<br>
+男<input type="radio" name="gender" value="0" checked>
+女<input type="radio" name="gender" value="1">
+<br>
+<input type="checkbox" name="mail" value="1" >メールマガジン登録<br>
+都道府県
+<select name = "ken">
+<option value="Kumamoto">熊本</option>
+<option value="Nagasaki">長崎</option>
+<option value="Fukuoka">福岡</option>
+</select>
+<br>
+お問い合わせ内容<br>
+<textarea rows="body" cols=""></textarea>
+
+<input type="hidden" name="gamen" value="a1">
+
 <input type = "submit" value = "送信">
 </form>
 

@@ -32,7 +32,26 @@ public class FormServlet extends HttpServlet {
 		request.setCharacterEncoding("UTF-8");
 		String name = request.getParameter("name");
 		String gender = request.getParameter("gender");
+		String mail = request.getParameter("mail");
+		String ken = request.getParameter("ken");
+		String body = request.getParameter("body");
+		String gamen = request.getParameter("gamen");
 
+
+		String errorMsg = "";
+		if(name==null || name.length()==0) {
+			errorMsg += "名前が入力されていません<br>";
+		}
+		if(gender==null || gender.length()==0) {
+			errorMsg += "性別が入力されていません<br>";
+		}
+
+		String mailMsg="メールマガジン登録：";
+		if(mail!=null) {
+			mailMsg += "する";
+		}else {
+			mailMsg += "しない";
+		}
 
 
 		response.setContentType("text/html; charset=UTF-8");
@@ -44,8 +63,12 @@ public class FormServlet extends HttpServlet {
 		out.println("</head>");
 		out.println("<body>");
 		out.println("<h1>GETのフォーム</h1>");
+		out.println("<p>"+errorMsg+"</p>");
 		out.println("<p>"+name+"</p>");
 		out.println("<p>"+gender+"</p>");
+		out.println("<p>"+mailMsg+"</p>");
+		out.println("<p>"+ken+"</p>");
+		out.println("<pre>"+body+"</pre>");
 		out.println("</body>");
 		out.println("</html>");
 

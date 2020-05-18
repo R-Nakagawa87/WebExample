@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>三角面積</title>
+</head>
+<body>
+
+<form action = "sankaku" method = "get">
+底辺：<input type = "text" name = "strTeihen"><br>
+高さ：<input type = "text" name = "strTakasa"><br>
+<input type = "submit" value = "送信">
+</form>
+
+<br>
+<a href="http://localhost:8080/example/sankaku?strTeihen=8&strTakasa=4">底辺：8、高さ：4</a><br>
+<br>
+
+<form action = "sankaku" method = "get">
+<input type = "hidden" name = "strTeihen" value="8">
+<input type = "hidden" name = "strTakasa" value="4">
+<input type = "submit" value = "送信">
+</form>
+
+</body>
+</html>

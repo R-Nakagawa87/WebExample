@@ -56,19 +56,37 @@ public class MemberUpdateServlet extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		request.setCharacterEncoding("UTF-8");
 
-		String midStr = request.getParameter("midStr");
-		String name = request.getParameter("name");
-		String adr = request.getParameter("adr");
+		try {
+			String midStr = request.getParameter("midStr");
+			String name = request.getParameter("name");
+			String adr = request.getParameter("adr");
 
-		int mid = Integer.parseInt(midStr);
+			int mid = Integer.parseInt(midStr);
 
 
-		MemberDAO dao = new MemberDAO();
-		Member m = new Member(mid, name, adr);
+			if(name.isEmpty() || adr.isEmpty()) {
 
-		dao.update(m);
+				throw new IllegalArgumentException();
 
-		response.sendRedirect("mlist");
+			}else {
+
+			MemberDAO dao = new MemberDAO();
+			Member m = new Member(mid, name, adr);
+
+			dao.update(m);
+
+			response.sendRedirect("mlist");
+			}
+
+		}catch (IllegalArgumentException e) {
+
+			request.setAttribute("url", "mlist");
+			request.setAttribute("msg", "文字を入力してください");
+
+			RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/jsp/error.jsp");
+			dispatcher.forward(request, response);
+
+}
 	}
 
 }

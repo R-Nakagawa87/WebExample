@@ -52,18 +52,35 @@ public class MemberListServlet extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		request.setCharacterEncoding("UTF-8");
 
-		String name = request.getParameter("name");
-		String adr = request.getParameter("adr");
+		try {
+
+			String name = request.getParameter("name");
+			String adr = request.getParameter("adr");
 
 
-		MemberDAO dao = new MemberDAO();
+			if(name.isEmpty() || adr.isEmpty()) {
+				throw new IllegalArgumentException();
 
-		Member m = new Member(0, name, adr);
+			}else {
+			MemberDAO dao = new MemberDAO();
 
-		dao.insert(m);
+			Member m = new Member(0, name, adr);
+
+			dao.insert(m);
 
 
-		response.sendRedirect("mlist");
+			response.sendRedirect("mlist");
+			}
+		}catch (IllegalArgumentException e) {
+
+
+			request.setAttribute("url", "mlist");
+			request.setAttribute("msg", "文字を入力してください");
+
+			RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/jsp/error.jsp");
+			dispatcher.forward(request, response);
+
+		}
 
 	}
 }

@@ -21,14 +21,19 @@ table{
 
 </head>
 <body>
+<h1>売上リスト</h1>
+
+<p><a href="uinsert">追加</a></p>
+
 <table>
 <tr>
-<th>売上UID</th> <th>売上SID</th> <th>販売個数</th> <th>販売日</th></tr>
+<th>売上ID</th> <th>商品ID</th> <th>販売個数</th> <th>販売日</th></tr>
 <c:forEach var="uriage" items="${ list }">
 <tr>	<td>${ uriage.uid}</td>
 		<td>${ uriage.sid}</td>
 		 <td>${ uriage.kosu }</td>
 		 <td>${ uriage.hi }</td>
+		 <td><a href="uinfo?uidStr=${ uriage.uid}">売上情報</a></td>
 </tr>
 </c:forEach>
 </table>

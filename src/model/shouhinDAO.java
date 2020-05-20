@@ -76,7 +76,7 @@ public class shouhinDAO {
 	}
 
 
-	public static Shouhin findBySid(int sid) {
+	public Shouhin findBySid(int sid) {
 
 		Shouhin s = null;
 

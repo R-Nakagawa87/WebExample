@@ -111,14 +111,13 @@ public class UriageDAO {
 
 		try (Connection con = DriverManager.getConnection(URL, USER, PASS);) {
 
-			String sql = "INSERT INTO uriage (uid, sid, kosu, hi) VALUES(?,?,?,curdate())";
+			String sql = "INSERT INTO uriage (sid, kosu, hi) VALUES(?, ?, curdate())";
 			PreparedStatement stmt = con.prepareStatement(sql);
 
-			ResultSet rs = stmt.executeQuery();
+//			ResultSet rs = stmt.executeQuery();
 
-			stmt.setInt(1, u.getUid());
-			stmt.setInt(2,  u.getSid());
-			stmt.setInt(3,  u.getKosu());
+			stmt.setInt(1,  u.getSid());
+			stmt.setInt(2,  u.getKosu());
 
 			stmt.executeUpdate();
 			stmt.close();
@@ -133,6 +132,14 @@ public class UriageDAO {
 	public static void update(Uriage u) {
 
 		try (Connection con = DriverManager.getConnection(URL, USER, PASS);) {
+
+//			String sql = "UPDATE uriage SET sid = ?, kosu = ?, hi = ? WHERE uid = ?";
+//			PreparedStatement stmt = con.prepareStatement(sql);
+//
+//			stmt.setInt(1, u.getSid());
+//			stmt.setInt(2, u.getKosu());
+//			stmt.setDate(3, u.getHi());
+//			stmt.setInt(4, u.getUid());
 
 			String sql = "UPDATE uriage SET sid = ?, kosu = ?, hi = ? WHERE uid = ?";
 			PreparedStatement stmt = con.prepareStatement(sql);

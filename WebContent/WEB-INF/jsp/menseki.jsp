@@ -4,14 +4,13 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>三角形面積計算</title>
+<title>三角形の面積表示</title>
 </head>
 <body>
 
-<p>底辺：${sankaku.teihen}</p><br>
-<p>高さ：${sankaku.takasa}</p><br>
-<br>
-<p><a href="menseki">面積表示</a></p>
+<h1>三角形の面積表示</h1>
+
+<p>三角形の面積：${ sankaku.menseki }</p>
 
 </body>
 </html>

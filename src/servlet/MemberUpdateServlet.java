@@ -57,36 +57,53 @@ public class MemberUpdateServlet extends HttpServlet {
 		request.setCharacterEncoding("UTF-8");
 
 		try {
+
 			String midStr = request.getParameter("midStr");
 			String name = request.getParameter("name");
 			String adr = request.getParameter("adr");
+			String action = request.getParameter("action");
 
 			int mid = Integer.parseInt(midStr);
 
 
-			if(name.isEmpty() || adr.isEmpty()) {
-
-				throw new IllegalArgumentException();
-
-			}else {
-
 			MemberDAO dao = new MemberDAO();
 			Member m = new Member(mid, name, adr);
 
-			dao.update(m);
+
+			if(action.equals("update")) {
+
+				if(name.isEmpty() || adr.isEmpty()) {
+
+					throw new IllegalArgumentException("文字を入力してください");
+
+				}else {
+
+
+					if(action.equals("update")) {
+						dao.update(m);
+					}
+				}
+			}
+
+
+			if(action.equals("del")) {
+				dao.delete(mid);
+			}
+
+
+
 
 			response.sendRedirect("mlist");
-			}
+
 
 		}catch (IllegalArgumentException e) {
 
 			request.setAttribute("url", "mlist");
-			request.setAttribute("msg", "文字を入力してください");
+			request.setAttribute("msg", e.getMessage());
 
 			RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/jsp/error.jsp");
 			dispatcher.forward(request, response);
-
-}
+		}
 	}
 
 }

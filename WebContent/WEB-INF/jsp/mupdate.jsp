@@ -9,6 +9,7 @@
 <body>
 
 <form action = "mupdate" method = "post">
+<input type = "hidden" name = "action" value = "update">
 <input type = "hidden" name = "midStr" value = ${ member.mid}>
 氏名：<input type = "text" name = "name" value = ${ member.name }><br>
 住所：<input type = "text" name = "adr"  value = ${ member.adr }><br>
@@ -16,8 +17,11 @@
 <br>
 </form>
 
-<form action = "mdel" method = "post">
+<form action = "mupdate" method = "post">
+<input type = "hidden" name = "action" value = "del">
 <input type = "hidden" name = "midStr" value = ${ member.mid}>
+<input type = "hidden" name = "name" value = ${ member.name }>
+<input type = "hidden" name = "adr"  value = ${ member.adr }>
 <input type = "submit" value = "削除">
 </form>
 

@@ -1,0 +1,13 @@
+@startuml
+left to right direction
+
+actor ユーザー
+actor 管理者
+
+rectangle 掲示板{
+	ユーザー --> (投稿)
+	ユーザー --> (削除)
+	ユーザー --> (閲覧)
+}
+
+@enduml

@@ -23,6 +23,9 @@ table{
 <body>
 <h1>売上リスト</h1>
 
+<p>ようこそ、${ user.uname }さん( ${ user.mail } )</p>
+
+<p><a href="logout">ログアウト</a></p>
 <p><a href="uinsert">追加</a></p>
 
 <table>

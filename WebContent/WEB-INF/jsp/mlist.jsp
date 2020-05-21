@@ -30,6 +30,8 @@ table{
 <br>
 </form>
 
+<h1>メンバー一覧</h1>
+
 <table>
 <tr>
 <th>メンバーID</th> <th>氏名</th> <th>住所</th></tr>

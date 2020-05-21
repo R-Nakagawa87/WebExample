@@ -23,7 +23,9 @@ table{
 
 <h1>商品リスト</h1>
 
-<p><a href="insert">追加</a></p>
+<c:if test = "${ not empty user }">
+	<p><a href="insert">追加</a></p>
+</c:if>
 
 <table>
 <tr>
@@ -33,8 +35,12 @@ table{
 		 <td>${ shouhin.sname }</td>
 		 <td>${ shouhin.tanka }</td>
 		 <td><a href="uriage?sidStr=${ shouhin.sid }">売上</a></td>
-		 <td><a href="update?sidStr=${ shouhin.sid}">変更</a></td>
-		 <td><a href="del?sidStr=${ shouhin.sid}">削除</a></td>
+		 <c:if test = "${ not empty user }">
+		 	<td><a href="update?sidStr=${ shouhin.sid}">変更</a></td>
+		 </c:if>
+		 <c:if test = "${ not empty user }">
+		 	<td><a href="del?sidStr=${ shouhin.sid}">削除</a></td>
+		 </c:if>
 </tr>
 </c:forEach>
 </table>

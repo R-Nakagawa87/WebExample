@@ -59,7 +59,7 @@ public class MemberListServlet extends HttpServlet {
 
 
 			if(name.isEmpty() || adr.isEmpty()) {
-				throw new IllegalArgumentException();
+				throw new IllegalArgumentException("文字を入力してください");
 
 			}else {
 			MemberDAO dao = new MemberDAO();
@@ -75,7 +75,7 @@ public class MemberListServlet extends HttpServlet {
 
 
 			request.setAttribute("url", "mlist");
-			request.setAttribute("msg", "文字を入力してください");
+			request.setAttribute("msg", e.getMessage());
 
 			RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/jsp/error.jsp");
 			dispatcher.forward(request, response);

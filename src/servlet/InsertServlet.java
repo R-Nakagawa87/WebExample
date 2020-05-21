@@ -8,6 +8,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import model.Shouhin;
 import model.shouhinDAO;
@@ -54,7 +55,9 @@ public class InsertServlet extends HttpServlet {
 			Shouhin s = new Shouhin(0, name, tanka);
 
 
-			request.setAttribute("shouhin", s);
+			HttpSession session = request.getSession();
+
+			session.setAttribute("shouhin", s);
 
 			RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/jsp/kakunin.jsp");
 			dispatcher.forward(request, response);
@@ -75,17 +78,15 @@ public class InsertServlet extends HttpServlet {
 
 		request.setCharacterEncoding("UTF-8");
 
-		String name = request.getParameter("name");
-		String strTanka = request.getParameter("strTanka");
-
-		int tanka = Integer.parseInt(strTanka);
-
-
 		shouhinDAO sdao = new shouhinDAO();
-		Shouhin s = new Shouhin(0, name, tanka);
+
+		HttpSession session = request.getSession();
+		Shouhin s = (Shouhin)session.getAttribute("shouhin");
+
+
 		sdao.insert(s);
 
-		response.sendRedirect("http://localhost:8080/example/slist");
+		response.sendRedirect("slist");
 
 
 

@@ -10,19 +10,20 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-import model.Sankaku;
+import model.User;
+import model.UserDAO;
 
 /**
- * Servlet implementation class SankakuServlet
+ * Servlet implementation class LoginServlet
  */
-@WebServlet("/sankaku")
-public class SankakuServlet extends HttpServlet {
+@WebServlet("/login")
+public class LoginServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public SankakuServlet() {
+    public LoginServlet() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -31,20 +32,16 @@ public class SankakuServlet extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-
-		String strTakasa = request.getParameter("strTakasa");
-		String strTeihen = request.getParameter("strTeihen");
-
-		int takasa = Integer.parseInt(strTakasa);
-		int teihen = Integer.parseInt(strTeihen);
-
-		Sankaku s = new Sankaku(teihen, takasa);
-
 		HttpSession session = request.getSession();
 
-		session.setAttribute("sankaku", s);
+		String error = (String)session.getAttribute("error");
 
-		RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/jsp/sankaku.jsp");
+		if(error != null) {
+			request.setAttribute("mes", error);
+			session.removeAttribute("error");
+		}
+
+		RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/jsp/login.jsp");
 		dispatcher.forward(request, response);
 	}
 
@@ -52,8 +49,30 @@ public class SankakuServlet extends HttpServlet {
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
-		doGet(request, response);
+		request.setCharacterEncoding("UTF-8");
+
+		String name = request.getParameter("name");
+		String pass = request.getParameter("pass");
+
+
+		UserDAO dao = new UserDAO();
+
+		User u = dao.login(name, pass);
+
+		if(u != null) {
+			HttpSession session = request.getSession();
+
+			session.setAttribute("user", u);
+
+			response.sendRedirect("ulist");
+
+		}else {
+			HttpSession session = request.getSession();
+
+			String error = (String)session.getAttribute("ユーザー名、もしくはパスワードが違います");
+
+			response.sendRedirect("login");
+		}
 	}
 
 }

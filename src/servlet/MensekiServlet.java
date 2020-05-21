@@ -10,19 +10,17 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-import model.Sankaku;
-
 /**
- * Servlet implementation class SankakuServlet
+ * Servlet implementation class MensekiServlet
  */
-@WebServlet("/sankaku")
-public class SankakuServlet extends HttpServlet {
+@WebServlet("/menseki")
+public class MensekiServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public SankakuServlet() {
+    public MensekiServlet() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -32,20 +30,11 @@ public class SankakuServlet extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
-		String strTakasa = request.getParameter("strTakasa");
-		String strTeihen = request.getParameter("strTeihen");
-
-		int takasa = Integer.parseInt(strTakasa);
-		int teihen = Integer.parseInt(strTeihen);
-
-		Sankaku s = new Sankaku(teihen, takasa);
+		RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/jsp/menseki.jsp");
+		dispatcher.forward(request, response);
 
 		HttpSession session = request.getSession();
-
-		session.setAttribute("sankaku", s);
-
-		RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/jsp/sankaku.jsp");
-		dispatcher.forward(request, response);
+		session.removeAttribute("sankaku");
 	}
 
 	/**

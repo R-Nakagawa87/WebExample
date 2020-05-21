@@ -18,8 +18,6 @@
 <br>
 
 <form action = "insert" method = "post">
-<input type = "hidden" name = "name" value = "${ shouhin.sname }"><br>
-<input type = "hidden" name = "strTanka" value = "${ shouhin.tanka }"><br>
 <input type = "submit" value = "追加">
 </form>
 

@@ -1,0 +1,7 @@
+@startuml
+title 削除
+
+actor ユーザー
+participant threadHomePage
+
+@enduml

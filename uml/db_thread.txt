@@ -1,0 +1,9 @@
+スキーマ名：Thread
+テーブル名：Thread
+
+列名：tid		スレッドID		int
+											primary
+											ai
+		name	名前					varchar(45)
+		text		本文					text
+		time		日時					DateTime

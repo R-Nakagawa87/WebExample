@@ -1,0 +1,26 @@
+@startuml
+class Thread{
+	-tid
+	-name
+	-text
+	-time
+}
+
+class ThreadDAO{
+	+findByTid()
+	+inserrt()
+	+delete()
+}
+
+class ThreadServlet{
+
+}
+
+class ThreadInsertServlet{
+
+}
+
+class ThreadDeleteServlet{
+
+}
+@enduml

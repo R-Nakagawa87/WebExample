@@ -3,11 +3,12 @@ title 閲覧、追加
 
 actor ユーザー
 
-ユーザー -> threadPage : フォーム、追加ボタン
-threadPage -> threadServlet : スレッド
-threadServlet -> thread : 生成
-thread -> threadServlet : スレッド追加
-threadServlet -> threadPage : 遷移
+ユーザー -> thread.jsp : 入力
+thread.jsp -> threadServlet : POST
+threadServlet -> threadDAO : New()
+threadServlet -> thread : New()
+threadServlet -> threadDAO : insert()
+threadServlet -> threadPage : sendRedirect()
 threadPage -> ユーザー : 表示
 
 @enduml

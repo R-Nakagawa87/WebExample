@@ -9,7 +9,7 @@ delete : GET 削除確認\nPOST 削除
 threadPage --> threadPage:リンク\nname\ntext\ntime
 insert --> threadPage
 
-threadPage --> delete:リンク\ntid
+threadPage --> threadDelete:リンク\ntid
 delete --> threadPage
 
 @enduml

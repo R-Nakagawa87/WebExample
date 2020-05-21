@@ -1,9 +1,9 @@
-スキーマ名：Thread
+スキーマ名：keijiban
 テーブル名：Thread
 
 列名：tid		スレッドID		int
 											primary
 											ai
 		name	名前					varchar(45)
-		text		本文					text
+		mainText		本文					text
 		insertTime		日時					DateTime

@@ -17,12 +17,13 @@ package threadModel{
 	class Thread{
 		-tid
 		-name
-		-text
+		-mainText
 		-insertTime
 	}
 
 	class ThreadDAO{
-		+findByTid(int tid):thread
+		+findAll() : thread
+		+findByTid(int tid) : thread
 		+inserrt(Thread t)
 		+delete(Tread t)
 	}

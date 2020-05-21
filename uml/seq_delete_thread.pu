@@ -1,0 +1,17 @@
+@startuml
+title 削除
+
+actor ユーザー
+
+ユーザー -> threadPage : 削除ボタン
+threadPage -> deleteServlet : 遷移
+deleteServlet -> threadServlet : FindByTid()
+threadServlet -> thread : 生成()
+threadServlet -> DeleteServlet : Thread
+DeleteServlet -> ユーザー : 確認画面
+ユーザー -> DeleteServlet : 確認ボタン
+DeleteServlet -> threadServlet : 削除
+DeleteServlet -> threadPage : 遷移
+threadPage -> ユーザー : 表示
+
+@enduml

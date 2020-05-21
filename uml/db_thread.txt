@@ -6,4 +6,4 @@
 											ai
 		name	名前					varchar(45)
 		text		本文					text
-		time		日時					DateTime
+		insertTime		日時					DateTime

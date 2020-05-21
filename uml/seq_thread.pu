@@ -1,7 +1,13 @@
 @startuml
-title 削除
+title 閲覧、追加
 
 actor ユーザー
-participant threadHomePage
+
+ユーザー -> threadPage : フォーム、追加ボタン
+threadPage -> threadServlet : スレッド
+threadServlet -> thread : 生成
+thread -> threadServlet : スレッド追加
+threadServlet -> threadPage : 遷移
+threadPage -> ユーザー : 表示
 
 @enduml

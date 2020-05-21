@@ -1,15 +1,15 @@
 @startuml
 title ページ遷移図
 
-threadHomePage : スレッドホームページ
+threadPage : スレッドページ
 insert : POST 投稿
 delete : GET 削除確認\nPOST 削除
 
-[*] -> threadHomePage
-threadHomePage --> insert:リンク\nname\ntext\ntime
-insert --> threadHomePage
+[*] -> threadPage
+threadPage --> threadPage:リンク\nname\ntext\ntime
+insert --> threadPage
 
-threadHomePage --> delete:リンク\ntid
-delete --> threadHomePage
+threadPage --> delete:リンク\ntid
+delete --> threadPage
 
 @enduml

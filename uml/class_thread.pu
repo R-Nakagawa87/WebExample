@@ -1,26 +1,37 @@
 @startuml
-class Thread{
-	-tid
-	-name
-	-text
-	-time
+left to right direction
+
+package threadServlet{
+	class ThreadServlet{
+		+doGet()
+		+doPost()
+	}
+
+	class ThreadDeleteServlet{
+		+doGet()
+		+doPost()
+	}
 }
 
-class ThreadDAO{
-	+findByTid()
-	+inserrt()
-	+delete()
+package threadModel{
+	class Thread{
+		-tid
+		-name
+		-text
+		-insertTime
+	}
+
+	class ThreadDAO{
+		+findByTid(int tid):thread
+		+inserrt(Thread t)
+		+delete(Tread t)
+	}
+
+
+	ThreadServlet ..> ThreadDAO
+	ThreadDeleteServlet ..> ThreadDAO
+
+	ThreadDAO ..> Thread
 }
 
-class ThreadServlet{
-
-}
-
-class ThreadInsertServlet{
-
-}
-
-class ThreadDeleteServlet{
-
-}
 @enduml
